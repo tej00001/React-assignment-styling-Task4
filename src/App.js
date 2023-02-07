@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 //import './App.css';
-import React, { useState } from "react";
+import React, { useState,Fragment } from "react";
 import AddUser from "./components/Users/AddUser";
 import UserList from "./components/Users/UserList";
 function App() {
@@ -16,11 +16,11 @@ function App() {
   };
 
   return (
-    <div>
+    <Fragment>
       <h2>Let's Get Started</h2>
       <AddUser onAdd={onScreenUserhandler} />
       <UserList Users={userList} />
-    </div>
+    </Fragment>
   );
 }
 
