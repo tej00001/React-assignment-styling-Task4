@@ -19,7 +19,7 @@ function App() {
     <Fragment>
       <h2>Let's Get Started</h2>
       <AddUser onAdd={onScreenUserhandler} />
-      <UserList Users={userList} />
+      <UserList Users={ userList } />
     </Fragment>
   );
 }

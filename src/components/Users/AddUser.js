@@ -26,7 +26,7 @@ const AddUser = (props) => {
     ) {
       setError({
         title: "Invalid Input",
-        message: "Please enter a valid name and age (non-empty values).",
+        message: "Please enter a valid name,age and collegename (non-empty values).",
       });
       return;
     }
