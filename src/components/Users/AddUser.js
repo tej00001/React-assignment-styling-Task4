@@ -6,10 +6,9 @@ import ErrorModal from "../UI/ErrorModal";
 import Wrappers from "../Helpers/Wrappers";
 
 const AddUser = (props) => {
-
-  const nameInputRef=useRef();
-  const ageInputRef=useRef();
-
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+  const collegenameInputRef = useRef();
   // const [eneteredUsername, setEnteredUsername] = useState("");
   // const [enteredAge, setEnteredAge] = useState("");
   const [error, setError] = useState();
@@ -18,10 +17,12 @@ const AddUser = (props) => {
     event.preventDefault();
     const enteredName = nameInputRef.current.value;
     const enteredUserAge = ageInputRef.current.value;
+    const enteredCollegeName = collegenameInputRef.current.value;
 
     if (
       enteredName.trim().length === 0 ||
-      enteredUserAge.trim().length === 0
+      enteredUserAge.trim().length === 0 ||
+      enteredCollegeName.trim().length === 0
     ) {
       setError({
         title: "Invalid Input",
@@ -29,37 +30,38 @@ const AddUser = (props) => {
       });
       return;
     }
-      if (+enteredUserAge < 1) {
-        setError({
-          title: "Invalid age",
-          message: "Please enter a valid  age (>0).",
-        });
-        return;
-      }
-       props.onAdd(enteredName, enteredUserAge);
-       nameInputRef.current.value = '';
-       ageInputRef.current.value = '';
+    if (+enteredUserAge < 1) {
+      setError({
+        title: "Invalid age",
+        message: "Please enter a valid  age (>0).",
+      });
+      return;
     }
-    // if (
-    //   eneteredUsername.trim().length === 0 ||
-    //   enteredAge.trim().length === 0
-    // ) {
-    //   setError({
-    //     title: "Invalid Input",
-    //     message: "Please enter a valid name and age (non-empty values).",
-    //   });
-    //   return;
-    // }
-    // if (+enteredAge < 1) {
-    //   setError({
-    //     title: "Invalid age",
-    //     message: "Please enter a valid  age (>0).",
-    //   });
-    //   return;
-    // }
-    // props.onAdd(eneteredUsername, enteredAge);
-    // setEnteredUsername("");
-    // setEnteredAge("");
+    props.onAdd(enteredName, enteredUserAge, enteredCollegeName);
+    nameInputRef.current.value = "";
+    ageInputRef.current.value = "";
+    collegenameInputRef.current.value = "";
+  };
+  // if (
+  //   eneteredUsername.trim().length === 0 ||
+  //   enteredAge.trim().length === 0
+  // ) {
+  //   setError({
+  //     title: "Invalid Input",
+  //     message: "Please enter a valid name and age (non-empty values).",
+  //   });
+  //   return;
+  // }
+  // if (+enteredAge < 1) {
+  //   setError({
+  //     title: "Invalid age",
+  //     message: "Please enter a valid  age (>0).",
+  //   });
+  //   return;
+  // }
+  // props.onAdd(eneteredUsername, enteredAge);
+  // setEnteredUsername("");
+  // setEnteredAge("");
   // };
   // const eneteredUsernameHandler = (event) => {
   //   setEnteredUsername(event.target.value);
@@ -100,6 +102,15 @@ const AddUser = (props) => {
             // value={enteredAge}
             // onChange={eneteredAgeHandler}
             ref={ageInputRef}
+          />
+          <label htmlFor="collegename">College Name</label>
+          <input
+            id="collegename"
+            type="text"
+            placeholder="college name"
+            // value={eneteredUsername}
+            // onChange={eneteredUsernameHandler}
+            ref={collegenameInputRef}
           />
           <Button type="submit">Add User</Button>
         </form>
